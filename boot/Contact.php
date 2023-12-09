@@ -1,0 +1,262 @@
+<?php
+if($_SERVER['REQUEST_METHOD']=='POST'){
+ 
+    $server="localhost";
+    $username="root";
+    $password=" ";
+    // Make a connection variable now say con
+    $conn=mysqli_connect($server, $username);
+    
+    // To check if the connection succeeded or not
+    if(!$conn)
+    {
+        die("Connection to this database failed due to" .mysqli_connect_error());
+    }else{
+        echo "Connection to the db succeeded";
+    }
+// Make variable
+   $name=$_POST['name'];
+   $email=$_POST['email'];
+   $message=$_POST['message'];
+
+   // Make sql query
+   $sql="INSERT INTO `trip`.`contact` ( `name`, `email`, `message`, `dt`) VALUES ( '$name', '$email', '$message', current_timestamp());";
+
+   // To insert into the database
+if($conn->query($sql)==true){
+    // echo "Successfully inserted";
+}else
+{
+    echo "ERROR: $sql <br> $conn->error";
+}
+
+// Close the connection after the job is done
+$conn->close();
+
+
+// Finally use the function ifset on the top after inserting html
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCServices-We care about you</title>
+    <style>
+
+       
+
+        .carousel-item img
+        {
+height:600px;
+        }
+
+        .carousel-item span{
+            display:inline-block;
+           
+            position:relative;
+            top:-360px;
+            right:-636px;
+            font-size: 78px;
+            color: white;
+
+        }
+
+        .container
+        {
+           
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+       
+        .form input
+        {
+            margin:5px;
+        }
+        #message
+        {
+            width: 350px;
+            height:150px;
+        }
+        #btn
+        {
+            background-color: green;
+            border-radius: 15px;
+            position: relative;
+            left:50px;
+            color:white;
+            font-size: 24px;
+            font-weight: bold;
+            width:125px;
+        }
+        #btn:hover{
+            cursor:pointer;
+            background-color: red;
+            height: 50px;
+            color: white;
+        }
+        .icons
+        {
+            display: flex;
+            justify-content: space-evenly;
+            align-items:center;
+            
+        }
+        .icons i:hover{
+            cursor: pointer;
+
+        }
+        .last{
+            background-color: black;
+            margin-top: 180px;
+            height:80px;
+            color:white;
+            text-align: center;
+            padding: 20px;
+            position:relative;
+            top:40px;
+         
+        }
+
+
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    
+
+
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark" bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">LCService</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"  data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="Mentalc.html">Mental Counselling</a></li>
+                            <li><a class="dropdown-item" href="health.html">Health tips</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="injury.html">Injury Management</a></li>
+                            <li><a class="dropdown-item disabled" href="hospital.html">Hospital contact info</a></li>
+                            <li><a class="dropdown-item disabled" href="emergency.html">Emergency Number</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact.html">Contact us</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+
+               
+
+                <img src="need.avif" height="250px" class="d-block w-100" alt="...">
+
+                <div class="connect">
+                    <span>Contact us</span>
+                </div>
+
+            </div>
+        
+        </div>
+
+       
+<div class="container">
+    <div class="left">
+        <span><h1>WE'RE READY LET'S TALK</h1>
+        </span>
+        <form action="Contact.php" method="post">
+            <div class="form">
+                
+                    <label for="name"  >Name</label>
+                    <input type="text" id="name" placeholder="Your name" name="name">
+                    
+                    <br>
+                    <br>
+                    <label for="email" >Email</label>
+                    <input type="email" id="email" placeholder="example@gmail.com" name="email">
+                    <br>
+                    <br>
+                    
+                    <input id="message" placeholder="Message" name="message">
+
+                    <br>
+                    <br>
+                    <button type="submit" id="btn">Submit</button>
+               
+            </div>
+            </form>
+       
+    </div>
+   
+    <div class="right">
+        <span><h1>CONTACT INFO</h1></span>
+        <br>
+        <br>
+        
+        <div class="information">
+            <h5>Address</h5>
+            Kapan, Nilgiri Marga
+            <br>
+Kathmandu, Nepal
+<br>
+Postal code: 44622
+<br>
+<br>
+<br>
+<b>Email us</b>
+<br>
+ourteam@servicecompany.com
+<br>
+<br>
+<div class="icons">
+    <span><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook fa-xl"></i></a></span>
+    <span><a href="https://twitter.com/"><i class="fa-brands fa-twitter fa-2xl"></i></a></span>
+    <span><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-2xl"></i></a></span>
+</div>
+
+        </div>
+
+        
+    </div>
+</div>
+</form>
+<div class="last">
+    44600 Jorpati, Gokarneshwor, Kathmandu, Nepal | Phone 015918337 | Email: service01@example.com
+    <p>Copyright &copy; LCServices-We care about you</p>
+</div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
+    <script src="https://kit.fontawesome.com/0a117d2ad3.js" crossorigin="anonymous"></script>
+</body>
+</html>
