@@ -122,8 +122,8 @@ height: 600px;
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="injury.html">Injury Management</a></li>
-                            <li><a class="dropdown-item disabled" href="hospital.html">Hospital contact info</a></li>
-                            <li><a class="dropdown-item disabled" href="emergency.html">Emergency Number</a></li>
+                            <li><a class="dropdown-item " href="hospital.html">Hospital contact info</a></li>
+                            <li><a class="dropdown-item " href="emergency.html">Emergency Number</a></li>
                             
                         </ul>
                     </li>
